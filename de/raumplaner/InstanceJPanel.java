@@ -1,6 +1,7 @@
 package de.raumplaner;
 
 import de.raumplaner.objects.*;
+import de.raumplaner.utils.FurnitureInfo;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,8 +30,16 @@ public class InstanceJPanel extends JPanel  {
         InstanceJPanel.INSTANCE = INSTANCE;
     }
 
-    public InstanceJPanel(String filepath) {
-        //TODO:READ JSON
+    public InstanceJPanel(ArrayList x) {
+        this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
+        this.setBackground(backgroundColor);
+        this.setFocusable(true);
+        this.addKeyListener(new MyKeyAdapter());
+        this.addMouseListener(new MyMouseAdapter());
+        start(x);
+        start();
+    }
+    public InstanceJPanel() {
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBackground(backgroundColor);
         this.setFocusable(true);
@@ -38,12 +47,19 @@ public class InstanceJPanel extends JPanel  {
         this.addMouseListener(new MyMouseAdapter());
         start();
     }
+    public void start(ArrayList<FurnitureInfo> arrayList){
+
+        for (FurnitureInfo furnitureInfo : arrayList){
+            switch (furnitureInfo.getType()){
+                case "chair":
+                    objects.add(new Chair(furnitureInfo.getX(), furnitureInfo.getY(),furnitureInfo.getWidth(),furnitureInfo.getWidth(),furnitureInfo.getRotation(),furnitureInfo.getColor(),furnitureInfo.isVisible()));
+                    break;
+                default:
+                    throw new IllegalArgumentException("Wrong Input");
+            }
+        }
+    }
     public void start(){
-        objects.add(new Schrankelement(200,200,50,50,0,"cyan", true));
-        objects.add(new Schrankwand(0,0,50,50,0,"cyan", true, 6));
-        objects.add(new Klavier(300,300,100,200,0,"cyan",true));
-        //objects.add(new school.furniture.Klavier(20,20,60*2,150*2, 0,"cyan", true));
-        //objects.add(new school.furniture.Klavier(60*2 + 20 + 20,20,60,150, 0,"cyan", true));
         objects.get(activeObject).setActive(true);
         System.out.println("Use Arrow Keys to move object");
         System.out.println("Use Enter to switch objects");

@@ -4,14 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class StartUpJFrame extends JFrame implements ActionListener {
     JButton textbox;
     int response;
-    String name = "";
 
     public StartUpJFrame(){
-        this.setTitle(name);
+        this.setTitle("Select JSON");
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setLayout(new FlowLayout());
         textbox = new JButton("Select JSON");
