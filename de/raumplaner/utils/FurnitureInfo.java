@@ -1,10 +1,14 @@
 package de.raumplaner.utils;
 
 public class FurnitureInfo {
-    private String type;
-    private int x,y,width,height,rotation;
-    private boolean visible;
-    private String color;
+    private final String type;
+    private int x;
+    private int y;
+    private final int width;
+    private final int height;
+    private final int rotation;
+    private final boolean visible;
+    private final String color;
 
     public FurnitureInfo(String type, int x, int y, int width, int height, int rotation, boolean visible, String color) {
         this.type = type;

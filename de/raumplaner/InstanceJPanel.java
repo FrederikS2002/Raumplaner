@@ -22,7 +22,7 @@ public class InstanceJPanel extends JPanel  {
     boolean isPlacing;//TODO:SET IN UI
     FurnitureInfo isPlacingFurniture;//TODO:SET IN UI
     ArrayList<Furniture> objects = new ArrayList<>();
-    private SettingsJFrame settingsJFrame = new SettingsJFrame();
+    private final SettingsJFrame settingsJFrame = new SettingsJFrame();
 
     public static final InstanceJPanel getInstance(){
         return INSTANCE;

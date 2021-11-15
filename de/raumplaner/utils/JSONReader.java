@@ -10,12 +10,12 @@ import java.util.ArrayList;
 
 public class JSONReader {
     ArrayList<FurnitureInfo> furnitureInfos = new ArrayList<FurnitureInfo>();
-    private String absolutePath;
+    private final String absolutePath;
     private String jsonString;
     private String name;
     JSONObject jsonObject;
 
-    public JSONReader(String absolutePath) {;
+    public JSONReader(String absolutePath) {
         this.absolutePath = absolutePath;
         try{
             getStringFromFile();
