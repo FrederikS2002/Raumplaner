@@ -1,7 +1,7 @@
 package de.raumplaner;
 
 import de.raumplaner.objects.*;
-import de.raumplaner.utils.FurnitureInfo;
+import de.raumplaner.utils.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,21 +11,23 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-
-
 public class InstanceJPanel extends JPanel  {
-
+    private static InstanceJPanel INSTANCE;
     public static final int SCREEN_WIDTH = 600;
     public static final int SCREEN_HEIGHT = 600;
     private static final int ACTION_TURN = 1;
     public static final int ACTION_MOVE = 10;
-    private static InstanceJPanel INSTANCE;
     private final Color backgroundColor = Color.black;
-    public int activeObject = 0;
+    public int activeObject;
+    boolean isPlacing;//TODO:SET IN UI
+    FurnitureInfo isPlacingFurniture;//TODO:SET IN UI
     ArrayList<Furniture> objects = new ArrayList<>();
+    private SettingsJFrame settingsJFrame = new SettingsJFrame();
+
     public static final InstanceJPanel getInstance(){
         return INSTANCE;
     }
+
     public void setINSTANCE(InstanceJPanel INSTANCE){
         InstanceJPanel.INSTANCE = INSTANCE;
     }
@@ -36,36 +38,23 @@ public class InstanceJPanel extends JPanel  {
         this.setFocusable(true);
         this.addKeyListener(new MyKeyAdapter());
         this.addMouseListener(new MyMouseAdapter());
-        start(x);
-        start();
+        foreachArrayList(x);
     }
+
     public InstanceJPanel() {
         this.setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
         this.setBackground(backgroundColor);
         this.setFocusable(true);
         this.addKeyListener(new MyKeyAdapter());
         this.addMouseListener(new MyMouseAdapter());
-        start();
     }
-    public void start(ArrayList<FurnitureInfo> arrayList){
 
+    public void foreachArrayList(ArrayList<FurnitureInfo> arrayList){
         for (FurnitureInfo furnitureInfo : arrayList){
-            switch (furnitureInfo.getType()){
-                case "chair":
-                    objects.add(new Chair(furnitureInfo.getX(), furnitureInfo.getY(),furnitureInfo.getWidth(),furnitureInfo.getWidth(),furnitureInfo.getRotation(),furnitureInfo.getColor(),furnitureInfo.isVisible()));
-                    break;
-                default:
-                    throw new IllegalArgumentException("Wrong Input");
-            }
+            creatre(furnitureInfo);
         }
     }
-    public void start(){
-        objects.get(activeObject).setActive(true);
-        System.out.println("Use Arrow Keys to move object");
-        System.out.println("Use Enter to switch objects");
-        System.out.println("Use b/n to rotate");
-        System.out.println("Press m to print out active module info");
-    }
+
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         draw(g);
@@ -77,8 +66,20 @@ public class InstanceJPanel extends JPanel  {
         }
     }
 
-    public void checkCollision(){
+    private void placeObject(int x, int y){
+        isPlacingFurniture.setX(x);
+        isPlacingFurniture.setY(y);
+        creatre(isPlacingFurniture);
+    }
 
+    public void creatre(FurnitureInfo furnitureInfo){
+        switch (furnitureInfo.getType()){
+            case "chair":
+                objects.add(new Chair(furnitureInfo.getX(), furnitureInfo.getY(),furnitureInfo.getWidth(),furnitureInfo.getWidth(),furnitureInfo.getRotation(),furnitureInfo.getColor(),furnitureInfo.isVisible()));
+                break;
+            default:
+                throw new IllegalArgumentException("Wrong Input");
+        }
     }
 
     public void actionPerformed(){
@@ -114,21 +115,10 @@ public class InstanceJPanel extends JPanel  {
     public class MyMouseAdapter extends MouseAdapter{
         @Override
         public void mousePressed(MouseEvent e) {
-            //TODO:Check if pressed
-            if(activeObject < objects.size() - 1){
-                objects.get(activeObject).setActive(false);
-                activeObject++;
-            }else{
-                objects.get(activeObject).setActive(false);
-                activeObject = 0;
+            if(isPlacing){
+                placeObject(e.getX(),e.getY());
             }
-            objects.get(activeObject).setActive(true);
             actionPerformed();
-        }
-
-        @Override
-        public void mouseDragged(MouseEvent e) {
-
         }
     }
 }

@@ -197,17 +197,15 @@ public abstract class Furniture {
         }
         int tx = this.x;
         int ty = this.y;
-        int rx = x;
-        int ry = y;
-        rw += rx;
-        rh += ry;
+        rw += x;
+        rh += y;
         tw += tx;
         th += ty;
 
-        return ((rw < rx || rw > tx) &&
-                (rh < ry || rh > ty) &&
-                (tw < tx || tw > rx) &&
-                (th < ty || th > ry) ||
+        return ((rw < x || rw > tx) &&
+                (rh < y || rh > ty) &&
+                (tw < tx || tw > x) &&
+                (th < ty || th > y) ||
                 (tx < 0 || ty < 0 || tw > InstanceJPanel.SCREEN_WIDTH || th > InstanceJPanel.SCREEN_HEIGHT));
     }
 

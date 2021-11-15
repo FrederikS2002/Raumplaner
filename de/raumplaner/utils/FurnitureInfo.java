@@ -16,6 +16,22 @@ public class FurnitureInfo {
         this.visible = visible;
         this.color = color;
     }
+    public FurnitureInfo(String type, int width, int height, int rotation, boolean visible, String color) {
+        this.type = type;
+        this.width = width;
+        this.height = height;
+        this.rotation = rotation;
+        this.visible = visible;
+        this.color = color;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
 
     public String getType() {
         return type;
