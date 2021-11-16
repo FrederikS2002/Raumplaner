@@ -9,7 +9,7 @@ public abstract class Furniture {
     private int xPosition;
     private int yPosition;
     private int orientierung;
-    private String farbe;
+    protected String farbe;
     private boolean istSichtbar;
     protected int breite;
     protected int tiefe;
@@ -97,5 +97,21 @@ public abstract class Furniture {
 
     public Shape gibTransformierteFigur() {
         return transformiere(gibAktuelleFigur());
+    }
+
+    public void setxPosition(int xPosition) {
+        this.xPosition = xPosition;
+    }
+
+    public void setyPosition(int yPosition) {
+        this.yPosition = yPosition;
+    }
+
+    public int getxPosition() {
+        return xPosition;
+    }
+
+    public int getyPosition() {
+        return yPosition;
     }
 }

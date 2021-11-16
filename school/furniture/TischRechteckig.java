@@ -23,7 +23,7 @@ public class TischRechteckig extends Furniture
         // einen GeneralPath definieren
         GeneralPath tisch = new GeneralPath();
         tisch.moveTo(0 , 0);
-        tisch.lineTo(breite , 0);
+        tisch.lineTo(breite, 0);
         tisch.lineTo(breite , tiefe);
         tisch.lineTo(0 , tiefe);
         tisch.lineTo(0 , 0);

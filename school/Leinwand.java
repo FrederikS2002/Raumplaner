@@ -23,7 +23,7 @@ public class Leinwand {
     public static Leinwand gibLeinwand() {
         if (leinwandSingleton == null) {
             leinwandSingleton =
-                    new Leinwand("M�belprojekt Grafik", 400, 400, Color.white);
+                    new Leinwand("Möbelprojekt Grafik", 700, 700, Color.white);
         }
         leinwandSingleton.setzeSichtbarkeit(true);
         return leinwandSingleton;

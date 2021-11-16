@@ -1,5 +1,7 @@
 package school;
 
+import school.FurnitureArray.TischGruppe;
+import school.furniture.Schrankelement;
 import school.furniture.Schrankwand;
 
 import java.util.ArrayList;
@@ -8,7 +10,7 @@ public class Raumplaner {
     ArrayList<Furniture> furnitures = new ArrayList<Furniture>();
 
     public Raumplaner() {
-        furnitures.add(new Schrankwand(5,5,0,"cyan", false, 50*3,50));
+        furnitures.add(new TischGruppe(5,5,3,2,0,"rot"));
         for (Furniture obj : furnitures){
             obj.zeige();
         }
