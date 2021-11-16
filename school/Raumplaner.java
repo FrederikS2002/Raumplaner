@@ -20,7 +20,7 @@ public class Raumplaner {
 
     public void zeigeFurnitureArray(){
         for(Furniture obj : furnitures){
-            //System.out.println(obj.); was soll hier gemacht werden
+            System.out.println(obj);
         }
     }
 
