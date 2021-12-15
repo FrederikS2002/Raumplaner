@@ -1,19 +1,26 @@
 package school;
 
-import school.FurnitureArray.TischGruppe;
-import school.furniture.Schrankelement;
-import school.furniture.Schrankwand;
+import school.furnitureComposition.TischGruppe;
 
 import java.util.ArrayList;
 
 public class Raumplaner {
-    ArrayList<Furniture> furnitures = new ArrayList<Furniture>();
+    ArrayList<Furniture> furnitures = new ArrayList<>();
+    private static Raumplaner instance;
+
+    public static Raumplaner getInstance(){
+        if(instance == null) instance = new Raumplaner();
+        return instance;
+    }
 
     public Raumplaner() {
-        furnitures.add(new TischGruppe(5,5,3,2,0,"rot"));
+        furnitures.add(new TischGruppe(0,0,5,5,0,"grün"));
         for (Furniture obj : furnitures){
             obj.zeige();
         }
+    }
+    public void changex(){
+        furnitures.get(0).updatexPosition(10);
     }
 
     public void zeigeFurniture(int index){

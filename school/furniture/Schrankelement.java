@@ -2,10 +2,8 @@ package school.furniture;
 
 import school.Furniture;
 
-import java.awt.Shape;
+import java.awt.*;
 import java.awt.geom.GeneralPath;
-import java.awt.geom.Rectangle2D;
-import java.awt.geom.AffineTransform;
 
 public class Schrankelement extends Furniture {
     public Schrankelement(int xPosition, int yPosition, int orientierung, String farbe, boolean istSichtbar, int breite, int tiefe) {

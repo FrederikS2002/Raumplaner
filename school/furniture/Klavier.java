@@ -5,7 +5,7 @@ package school.furniture;
 import school.Furniture;
 
 import java.awt.*;
-import java.awt.geom.*;
+import java.awt.geom.GeneralPath;
 
 public class Klavier extends Furniture {
 

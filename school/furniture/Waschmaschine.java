@@ -3,10 +3,8 @@ package school.furniture;
 import school.Furniture;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.GeneralPath;
-import java.awt.geom.Rectangle2D;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.GeneralPath;
 
 public class Waschmaschine extends Furniture {
 

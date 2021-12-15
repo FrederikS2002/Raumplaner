@@ -1,9 +1,9 @@
 package school;
 
-import java.awt.Shape;
+import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Rectangle2D;
-import java.awt.geom.AffineTransform;
 
 public abstract class Furniture {
     private int xPosition;
@@ -13,6 +13,7 @@ public abstract class Furniture {
     private boolean istSichtbar;
     protected int breite;
     protected int tiefe;
+    int colornum = 0;
 
     public Furniture(int xPosition, int yPosition, int orientierung, String farbe, boolean istSichtbar, int breite, int tiefe) {
         this.xPosition = xPosition;
@@ -60,6 +61,31 @@ public abstract class Furniture {
         farbe = neueFarbe;
         zeichne();
     }
+    public void changecolor(){
+        switch (++this.colornum%6){
+            case 0:
+                aendereFarbe("rot");
+                break;
+            case 1:
+                aendereFarbe("blau");
+                break;
+            case 2:
+                aendereFarbe("gelb");
+                break;
+            case 3:
+                aendereFarbe("gruen");
+                break;
+            case 4:
+                aendereFarbe("lila");
+                break;
+            case 5:
+                aendereFarbe("cyan");
+                break;
+            default:
+                aendereFarbe("schwarz");
+        }
+
+    }
 
     public GeneralPath form() {
         return null;
@@ -68,7 +94,7 @@ public abstract class Furniture {
     protected void zeichne() {
         if (istSichtbar) {
             Shape figur = gibTransformierteFigur();
-            Leinwand leinwand = Leinwand.gibLeinwand();
+            Leinwand leinwand = Leinwand.getInstance();
             leinwand.zeichne(
                     this,           // leinwand kennt das Objekt
                     farbe,          // definiert seine Zeichenfarbe
@@ -81,7 +107,7 @@ public abstract class Furniture {
 
     public void loesche() {
         if (istSichtbar) {
-            Leinwand leinwand = Leinwand.gibLeinwand();
+            Leinwand leinwand = Leinwand.getInstance();
             leinwand.entferne(this);
         }
     }
@@ -101,6 +127,15 @@ public abstract class Furniture {
 
     public void setxPosition(int xPosition) {
         this.xPosition = xPosition;
+    }
+    public void updatexPosition(int xPosition) {
+        this.xPosition += xPosition;
+    }
+    public void updateyPosition(int yPosition) {
+        this.yPosition += yPosition;
+    }
+    public void rotate(int rotation) {
+        this.orientierung += rotation;
     }
 
     public void setyPosition(int yPosition) {

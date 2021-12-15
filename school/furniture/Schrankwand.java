@@ -2,7 +2,7 @@ package school.furniture;
 
 import school.Furniture;
 
-import java.awt.Shape;
+import java.awt.*;
 import java.awt.geom.GeneralPath;
 
 public class Schrankwand extends Furniture {
